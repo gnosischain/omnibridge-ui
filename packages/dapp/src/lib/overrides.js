@@ -1,9 +1,6 @@
 import {
   BSC_XDAI_BRIDGE,
-  ETH_BSC_BRIDGE,
   ETH_XDAI_BRIDGE,
-  KOVAN_SOKOL_BRIDGE,
-  POA_XDAI_BRIDGE,
 } from 'lib/networks';
 
 const OWLTokenOverride = {
@@ -81,21 +78,6 @@ const MOONTokenOverride = {
   },
 };
 
-const DEMO2712TokenOverrideSokol = {
-  77: {
-    mediator: '0x2a5fc52d8A563B2F181c6A527D422e1592C9ecFa',
-    from: '0xd846B096949E15b42ABCaEB82137c5a3495B1Ed4',
-    to: '0xa4764045851F17AA60B6c8E8b62072Bea9538521',
-    mode: 'dedicated-erc20',
-  },
-  42: {
-    mediator: '0xA68Bd659A9167F3D3C01bA9776A1208dae8F003b',
-    from: '0xa4764045851F17AA60B6c8E8b62072Bea9538521',
-    to: '0xd846B096949E15b42ABCaEB82137c5a3495B1Ed4',
-    mode: 'erc677',
-  },
-};
-
 const HNYTokenOverride = {
   100: {
     mediator: '0x0EeAcdb0Dd96588711581C5f3173dD55841b8e91',
@@ -152,21 +134,6 @@ const AGVETokenOverride = {
     mediator: '0x5689C65cfe5E8BF1A5F836c956DeA1b3B8BE00Bb',
     from: '0x0b006E475620Af076915257C6A9E40635AbdBBAd',
     to: '0x3a97704a1b25f08aa230ae53b352e2e72ef52843',
-    mode: 'erc677',
-  },
-};
-
-const STAKETokenOverridePOAxDAI = {
-  100: {
-    mediator: '0x63be59CF177cA9bb317DE8C4aa965Ddda93CB9d7',
-    from: '0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e',
-    to: '0xa90e565423342b3e5443cfc79ee57a62f9e30633',
-    mode: 'erc677',
-  },
-  99: {
-    mediator: '0x8134470b7CF6f57Faee2076adf8F7301fD5865a5',
-    from: '0xa90e565423342b3e5443cfc79ee57a62f9e30633',
-    to: '0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e',
     mode: 'erc677',
   },
 };
@@ -235,19 +202,10 @@ const KOVAN_SOKOL_OVERRIDES = {
 
 const BSC_XDAI_OVERRIDES = {};
 
-const POA_XDAI_OVERRIDES = {
-  ['0xa90e565423342b3e5443cfc79ee57a62f9e30633'.toLowerCase()]: STAKETokenOverridePOAxDAI,
-  ['0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e'.toLowerCase()]: STAKETokenOverridePOAxDAI,
-};
-
-const ETH_BSC_OVERRIDES = {};
-
 const OVERRIDES = {
   [ETH_XDAI_BRIDGE]: ETH_XDAI_OVERRIDES,
   [KOVAN_SOKOL_BRIDGE]: KOVAN_SOKOL_OVERRIDES,
   [BSC_XDAI_BRIDGE]: BSC_XDAI_OVERRIDES,
-  [POA_XDAI_BRIDGE]: POA_XDAI_OVERRIDES,
-  [ETH_BSC_BRIDGE]: ETH_BSC_OVERRIDES,
 };
 
 export const isOverridden = (bridgeDirection, token) => {

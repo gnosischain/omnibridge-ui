@@ -11,7 +11,6 @@ import { useBridgeDirection } from 'hooks/useBridgeDirection';
 import {
   ADDRESS_ZERO,
   BSC_XDAI_BRIDGE,
-  ETH_BSC_BRIDGE,
   ETH_XDAI_BRIDGE,
 } from 'lib/constants';
 import { logError } from 'lib/helpers';
@@ -28,7 +27,7 @@ export const useTokenGCOriginOnBSC = token => {
   const load = useCallback(async () => {
     setFetching(true);
     try {
-      if (token && token.chainId === 56 && bridgeDirection === ETH_BSC_BRIDGE) {
+      if (token && token.chainId === 56) {
         const provider = await getEthersProvider(56);
         const abi = [
           'function nativeTokenAddress(address) view returns (address)',

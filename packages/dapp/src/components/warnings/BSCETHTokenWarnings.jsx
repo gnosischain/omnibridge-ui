@@ -1,6 +1,5 @@
 import { Alert, AlertIcon, Flex, Text } from '@chakra-ui/react';
 import { useBridgeDirection } from 'hooks/useBridgeDirection';
-import { ETH_BSC_BRIDGE } from 'lib/constants';
 import React from 'react';
 
 const BSC_ASSETS = [
@@ -32,8 +31,6 @@ const isETHAsset = token => {
 };
 
 export const BSCETHTokenWarnings = ({ token, noShadow = false }) => {
-  const { bridgeDirection } = useBridgeDirection();
-  if (bridgeDirection !== ETH_BSC_BRIDGE) return null;
   const isETHToken = isETHAsset(token);
   const isBSCToken = isBSCAsset(token);
 

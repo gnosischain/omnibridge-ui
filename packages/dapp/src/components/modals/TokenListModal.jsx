@@ -35,7 +35,6 @@ import {
   logError,
   uniqueTokens,
 } from 'lib/helpers';
-import { ETH_BSC_BRIDGE } from 'lib/networks';
 import { fetchTokenBalanceWithProvider } from 'lib/token';
 import { fetchTokenList } from 'lib/tokenList';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -234,7 +233,6 @@ export const TokenListModal = ({ isOpen, onClose, onCustom }) => {
     async token => {
       setSelectedToken(token);
       if (
-        bridgeDirection === ETH_BSC_BRIDGE &&
         shouldShowBSCTokenModal(token)
       ) {
         showWarning();

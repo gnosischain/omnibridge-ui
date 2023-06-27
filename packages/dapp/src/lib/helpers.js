@@ -14,11 +14,9 @@ import {
 import {
   BSC_XDAI_BRIDGE,
   defaultTokens,
-  ETH_BSC_BRIDGE,
   ETH_XDAI_BRIDGE,
-  KOVAN_SOKOL_BRIDGE,
+  GOERLI_XDAI_BRIDGE,
   networks,
-  POA_XDAI_BRIDGE,
 } from 'lib/networks';
 
 import { getOverriddenMediator, isOverridden } from './overrides';
@@ -181,11 +179,10 @@ export const logDebug = (...args) => {
 
 const {
   XDAI_RPC_URL,
-  POA_RPC_URL,
   MAINNET_RPC_URL,
+  GOERLI_RPC_URL,
   BSC_RPC_URL,
-  KOVAN_RPC_URL,
-  SOKOL_RPC_URL,
+  CHIADO_RPC_URL,
 } = LOCAL_STORAGE_KEYS;
 
 export const getRPCKeys = bridgeDirection => {
@@ -195,26 +192,16 @@ export const getRPCKeys = bridgeDirection => {
         homeRPCKey: XDAI_RPC_URL,
         foreignRPCKey: MAINNET_RPC_URL,
       };
+    case GOERLI_XDAI_BRIDGE:
+      return {
+        homeRPCKey: CHIADO_RPC_URL,
+        foreignRPCKey: GOERLI_RPC_URL,
+      };
     case BSC_XDAI_BRIDGE:
+      default:
       return {
         homeRPCKey: XDAI_RPC_URL,
         foreignRPCKey: BSC_RPC_URL,
-      };
-    case POA_XDAI_BRIDGE:
-      return {
-        homeRPCKey: XDAI_RPC_URL,
-        foreignRPCKey: POA_RPC_URL,
-      };
-    case ETH_BSC_BRIDGE:
-      return {
-        homeRPCKey: BSC_RPC_URL,
-        foreignRPCKey: MAINNET_RPC_URL,
-      };
-    case KOVAN_SOKOL_BRIDGE:
-    default:
-      return {
-        homeRPCKey: SOKOL_RPC_URL,
-        foreignRPCKey: KOVAN_RPC_URL,
       };
   }
 };
