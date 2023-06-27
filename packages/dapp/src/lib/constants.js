@@ -59,7 +59,7 @@ export const nativeCurrencies = {
     logoURI: BNB_CURRENCY_LOGO,
     name: 'Binance Coin',
     address: ADDRESS_ZERO,
-    symbol: 'BNB',
+    symbol: 'ETH',
     mode: 'NATIVE',
   },
   10200: {
@@ -119,6 +119,10 @@ export const networkCurrencies = {
   },
   100: {
     name: 'xDai',
+    symbol: 'xDai',
+  },
+  10200: {
+    name: 'Chiado GC testnet',
     symbol: 'xDai',
   },
   10200: {
