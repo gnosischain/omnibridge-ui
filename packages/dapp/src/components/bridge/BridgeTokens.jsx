@@ -1,4 +1,5 @@
-import { Flex, Grid, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
+import { Flex, Grid, Image, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
+import InfoIcon from 'assets/info.svg';
 import { ActionButtons } from 'components/bridge/ActionButtons';
 import { AdvancedMenu } from 'components/bridge/AdvancedMenu';
 import { FromToken } from 'components/bridge/FromToken';
@@ -116,6 +117,12 @@ export const BridgeTokens = () => {
             <AdvancedMenu />
             <SystemFeedback {...{ tokenLimits, fetching, refresh }} />
           </VStack>
+          {(fromToken && fromToken.chainId === 1) && (
+            <div>
+              <Image src={InfoIcon} ml={2} />
+              <Text fontWeight="light" fontSize="sm">Transactions from Ethereum to Gnosis Chain are expected to take ~26 mins (130 blocks) because of the verification through the ZK light client</Text>
+            </div>
+          )}
         </Flex>
       )}
       {/* <CoinzillaBannerAd /> */}
