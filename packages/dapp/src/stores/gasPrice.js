@@ -1,4 +1,4 @@
-import { BigNumber, utils, providers } from 'ethers';
+import { BigNumber, providers, utils } from 'ethers';
 import { OWLRACLE_API_KEY } from 'lib/constants';
 import { logDebug, logError } from 'lib/helpers';
 
