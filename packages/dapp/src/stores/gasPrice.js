@@ -1,5 +1,4 @@
-import { BigNumber, utils } from 'ethers';
-import { GasPriceOracle } from 'gas-price-oracle';
+import { BigNumber, utils, providers } from 'ethers';
 import { OWLRACLE_API_KEY } from 'lib/constants';
 import { logDebug, logError } from 'lib/helpers';
 
@@ -35,23 +34,15 @@ const median = arr => {
   ).toFixed(2);
 };
 
-const gasPriceOracle = new GasPriceOracle();
-
 const gasPriceFromSupplier = async () => {
   try {
-    const json = await gasPriceOracle.fetchGasPricesOffChain();
-
-    if (!json) {
-      logError(`Response from Oracle didn't include gas price`);
-      return null;
+    const provider = new providers.JsonRpcProvider(process.env.REACT_APP_MAINNET_RPC_URL);
+    const standard = await provider.getGasPrice();
+    return {
+      standard
     }
-
-    if (Object.keys(json).length > 0) {
-      return json;
-    }
-    return null;
   } catch (e) {
-    logError(`Gas Price Oracle not available. ${e.message}`);
+    logError(`Gas Price not available. ${e.message}`);
   }
   return null;
 };
@@ -101,7 +92,7 @@ class GasPriceStore {
       if (gasPrices) {
         const { [this.speedType]: price } = gasPrices;
         if (price) {
-          this.gasPrice = utils.parseUnits(price.toFixed(2), 'gwei');
+          this.gasPrice = gasPrices;
         }
         logDebug('Updated Gas Price', gasPrices);
       }
@@ -116,8 +107,8 @@ class GasPriceStore {
     try {
       const response = await fetch(
         OWLRACLE_API_KEY
-          ? `https://owlracle.info/eth/history?candles=1008&timeframe=10&apiKey=${OWLRACLE_API_KEY}`
-          : `https://owlracle.info/eth/history?candles=1008&timeframe=10`,
+          ? `https://api.owlracle.info/v4/eth/history?apikey=${OWLRACLE_API_KEY}&candles=1008&timeframe=10`
+          : `https://api.owlracle.info/v4/eth/history?candles=1008&timeframe=10`,
       );
       if (!response.ok) {
         throw new Error(

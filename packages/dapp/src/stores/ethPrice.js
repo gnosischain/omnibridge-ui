@@ -43,7 +43,7 @@ class EthPriceStore {
   }
 
   async updateGasPrice() {
-    const fetchFn = () => fetch(this.ethPriceApiUrl);
+    const fetchFn = () => fetch(this.ethPriceApiUrl, { mode: 'no-cors'});
     this.ethPrice = await ethPriceFromApi(fetchFn);
     setTimeout(() => this.updateGasPrice(), this.updateInterval);
   }
