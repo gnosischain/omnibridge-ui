@@ -1,6 +1,6 @@
 import { BigNumber, providers, utils } from 'ethers';
 import { OWLRACLE_API_KEY } from 'lib/constants';
-import { logDebug, logError } from 'lib/helpers';
+import { getRPCUrl, logDebug, logError } from 'lib/helpers';
 
 const lowest = arr =>
   arr
@@ -36,10 +36,12 @@ const median = arr => {
 
 const gasPriceFromSupplier = async () => {
   try {
-    const provider = new providers.JsonRpcProvider(process.env.REACT_APP_MAINNET_RPC_URL);
-    const standard = await provider.getGasPrice();
+    const rpcUrl = getRPCUrl(1, true)[0];
+    const provider = new providers.JsonRpcProvider(rpcUrl);
+    const gasPrice = await provider.getGasPrice();
     return {
-      standard
+      standard: gasPrice,
+      fast: gasPrice
     }
   } catch (e) {
     logError(`Gas Price not available. ${e.message}`);
