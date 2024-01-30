@@ -14,8 +14,8 @@ export const isERC20DaiAddress = token => {
 };
 
 const XDaiBridgeLink = () => (
-  <Link href="https://bridge.xdaichain.com/" color="blue.500" isExternal>
-    xDai Ethereum Bridge
+  <Link href="https://bridge.gnosischain.com/" color="blue.500" isExternal>
+    xDai Bridge
   </Link>
 );
 
