@@ -94,7 +94,7 @@ class GasPriceStore {
       if (gasPrices) {
         const { [this.speedType]: price } = gasPrices;
         if (price) {
-          this.gasPrice = gasPrices;
+          this.gasPrice = price;
         }
         logDebug('Updated Gas Price', gasPrices);
       }
@@ -118,7 +118,7 @@ class GasPriceStore {
         );
       }
 
-      const data = await response.json();
+      const { candles: data} = await response.json();
 
       const lowestPrice = lowest(data);
       this.lowestHistoricalPrice = utils.parseUnits(lowestPrice, 'gwei');
